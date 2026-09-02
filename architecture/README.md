@@ -1,4 +1,4 @@
-#Procurement Architecture
+# Procurement Architecture
 
 ![PSCMD End-to-End Data Architecture](./pscmd-architecture.png)
 
