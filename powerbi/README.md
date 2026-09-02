@@ -1,6 +1,6 @@
 # Power BI — Procurement Analytics
 
-This section documents the Power BI reporting layer of the PSCMD project.
+This section documents the Power BI reporting layer of the Procurement project.
 
 The Power BI layer consumes curated warehouse data and provides interactive procurement analytics for business users.
 
