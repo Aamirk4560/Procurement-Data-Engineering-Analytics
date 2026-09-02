@@ -1,6 +1,6 @@
 # Project Documentation
 
-This directory contains supporting documentation for the PSCMD data engineering and analytics project.
+This directory contains supporting documentation for the Procurement data engineering and analytics project.
 
 ## Architecture
 
