@@ -1,0 +1,124 @@
+-- =========================================================
+-- PSCMD - Time Intelligence
+-- Current Year / Previous Year / YTD
+-- =========================================================
+
+-- Current Year Purchase Value
+Current Year Purchase Value :=
+VAR MaxFactDate =
+CALCULATE(
+MAX(Fact_Procurement[transaction_date]),
+REMOVEFILTERS(Dim_Date)
+)
+
+VAR CurrentYear =
+YEAR(TODAY())
+
+RETURN
+CALCULATE(
+[Total Purchase Value],
+
+```
+FILTER(
+    ALL(Dim_Date),
+    Dim_Date[Date] >= DATE(CurrentYear, 1, 1)
+        &&
+    Dim_Date[Date] <= MaxFactDate
+)
+```
+
+)
+
+-- Previous Year Purchase Value
+Previous Year Purchase Value :=
+VAR MaxFactDate =
+CALCULATE(
+MAX(Fact_Procurement[transaction_date]),
+REMOVEFILTERS(Dim_Date)
+)
+
+VAR CurrentYear =
+YEAR(TODAY())
+
+VAR PreviousYear =
+CurrentYear - 1
+
+VAR CurrentMonth =
+MONTH(TODAY())
+
+VAR CurrentDay =
+DAY(TODAY())
+
+RETURN
+CALCULATE(
+[Total Purchase Value],
+
+```
+FILTER(
+    ALL(Dim_Date),
+    Dim_Date[Date] >= DATE(PreviousYear, 1, 1)
+        &&
+    Dim_Date[Date] <=
+        DATE(
+            PreviousYear,
+            CurrentMonth,
+            MIN(
+                CurrentDay,
+                DAY(
+                    EOMONTH(
+                        DATE(
+                            PreviousYear,
+                            CurrentMonth,
+                            1
+                        ),
+                        0
+                    )
+                )
+            )
+        )
+)
+```
+
+)
+
+-- YTD Purchase Value
+YTD Purchase Value :=
+VAR TodayDate =
+TODAY()
+
+VAR CurrentYear =
+YEAR(TodayDate)
+
+VAR MaxFactDate =
+CALCULATE(
+MAX(Fact_Procurement[transaction_date]),
+REMOVEFILTERS(Dim_Date)
+)
+
+RETURN
+CALCULATE(
+[Total Purchase Value],
+
+```
+FILTER(
+    ALL(Dim_Date),
+    Dim_Date[Date] >= DATE(CurrentYear, 1, 1)
+        &&
+    Dim_Date[Date] <= MaxFactDate
+)
+```
+
+)
+
+-- Year-over-Year Difference
+Purchase Value YoY Difference :=
+[Current Year Purchase Value]
+- [Previous Year Purchase Value]
+
+-- Year-over-Year Percentage
+Purchase Value YoY % :=
+DIVIDE(
+[Purchase Value YoY Difference],
+[Previous Year Purchase Value],
+0
+)
