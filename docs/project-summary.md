@@ -1,8 +1,8 @@
-# PSCMD — Project Summary
+# Procurement — Project Summary
 
 ## Overview
 
-PSCMD is an end-to-end procurement data engineering and analytics solution designed to transform source procurement data into reliable, reporting-ready information.
+Procurement is an end-to-end procurement data engineering and analytics solution designed to transform source procurement data into reliable, reporting-ready information.
 
 The solution combines data engineering, warehouse modeling, business logic, analytics, security, monitoring, and automation.
 
