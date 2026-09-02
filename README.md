@@ -340,7 +340,7 @@ This project demonstrates practical experience with:
 
 # 📈 Project Goals
 
-The main goals of PSCMD are to:
+The main goals of Project are to:
 
 1. Build a reliable procurement data platform.
 2. Automate data ingestion and transformation.
