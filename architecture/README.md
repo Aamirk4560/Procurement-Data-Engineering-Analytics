@@ -1,5 +1,6 @@
-
 # PSCMD Architecture
+
+![PSCMD End-to-End Data Architecture](./pscmd-architecture.png)
 
 ## Overview
 
