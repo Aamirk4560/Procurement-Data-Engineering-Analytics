@@ -1,10 +1,10 @@
-# PSCMD Architecture
+#Procurement Architecture
 
 ![PSCMD End-to-End Data Architecture](./pscmd-architecture.png)
 
 ## Overview
 
-The PSCMD platform follows a layered data architecture designed to move procurement data from raw source files to structured, business-ready analytical datasets.
+The Procurement platform follows a layered data architecture designed to move procurement data from raw source files to structured, business-ready analytical datasets.
 
 The architecture separates ingestion, transformation, storage, business logic, analytics, security, and reporting responsibilities.
 
