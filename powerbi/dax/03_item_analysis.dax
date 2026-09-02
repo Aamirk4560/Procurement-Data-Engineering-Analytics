@@ -1,0 +1,115 @@
+-- =========================================================
+-- PSCMD - Item Analysis
+-- Top-N and Item Movement Classification
+-- =========================================================
+
+-- =========================================================
+-- 1. Selected Top-N Value
+-- =========================================================
+
+Selected Top N :=
+SELECTEDVALUE(
+'Top N'[Value],
+100
+)
+
+-- =========================================================
+-- 2. Top-N Purchase Value
+-- =========================================================
+
+Top N Purchase Value :=
+VAR SelectedItems =
+TOPN(
+[Selected Top N],
+ALLSELECTED(
+Dim_Item[item_id]
+),
+[Total Purchase Value],
+DESC
+)
+
+RETURN
+CALCULATE(
+[Total Purchase Value],
+KEEPFILTERS(SelectedItems)
+)
+
+-- =========================================================
+-- 3. Item Movement Status
+--------------------------
+
+## -- Example business rule:
+
+-- <= 185 days  -> Fast Moving
+-- > 185 days
+-- < 365 days   -> Slow Moving
+-- >= 365 days  -> Dead
+-- =========================================================
+
+Item Movement Status :=
+VAR LastTransactionDate =
+MAX(
+Fact_Procurement[transaction_date]
+)
+
+VAR DaysSinceTransaction =
+DATEDIFF(
+LastTransactionDate,
+TODAY(),
+DAY
+)
+
+RETURN
+SWITCH(
+TRUE(),
+
+```
+ISBLANK(LastTransactionDate),
+    "Dead",
+
+DaysSinceTransaction <= 185,
+    "Fast Moving",
+
+DaysSinceTransaction < 365,
+    "Slow Moving",
+
+"Dead"
+```
+
+)
+
+-- =========================================================
+-- 4. Number of Fast-Moving Items
+-- =========================================================
+
+Fast Moving Items :=
+COUNTROWS(
+FILTER(
+VALUES(Dim_Item[item_id]),
+[Item Movement Status] = "Fast Moving"
+)
+)
+
+-- =========================================================
+-- 5. Number of Slow-Moving Items
+-- =========================================================
+
+Slow Moving Items :=
+COUNTROWS(
+FILTER(
+VALUES(Dim_Item[item_id]),
+[Item Movement Status] = "Slow Moving"
+)
+)
+
+-- =========================================================
+-- 6. Number of Dead Items
+-- =========================================================
+
+Dead Items :=
+COUNTROWS(
+FILTER(
+VALUES(Dim_Item[item_id]),
+[Item Movement Status] = "Dead"
+)
+)
