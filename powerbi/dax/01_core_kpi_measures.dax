@@ -1,0 +1,61 @@
+-- =========================================================
+-- PSCMD - Core Power BI KPI Measures
+-- =========================================================
+
+-- Total Quantity
+Total Quantity :=
+SUM(
+Fact_Procurement[quantity]
+)
+
+-- Total Purchase Value
+Total Purchase Value :=
+SUM(
+Fact_Procurement[purchase_value]
+)
+
+-- Total Discount
+Total Discount :=
+SUM(
+Fact_Procurement[discount_value]
+)
+
+-- Average Unit Cost
+Average Unit Cost :=
+AVERAGE(
+Fact_Procurement[unit_cost]
+)
+
+-- Average Discount %
+Average Discount % :=
+DIVIDE(
+[Total Discount],
+[Total Purchase Value],
+0
+)
+
+-- Transaction Count
+Transaction Count :=
+COUNTROWS(
+Fact_Procurement
+)
+
+-- Import Purchase Value
+Import Purchase Value :=
+CALCULATE(
+[Total Purchase Value],
+Fact_Procurement[purchase_type] = "Import"
+)
+
+-- Import % of Total Purchase Value
+Import % of Total :=
+DIVIDE(
+[Import Purchase Value],
+CALCULATE(
+[Total Purchase Value],
+REMOVEFILTERS(
+Fact_Procurement[purchase_type]
+)
+),
+0
+)
