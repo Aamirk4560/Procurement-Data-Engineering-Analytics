@@ -1,6 +1,6 @@
 # SQL — Procurement Data Engineering
 
-This section contains sanitized SQL examples demonstrating the warehouse and analytics logic used in the PSCMD project.
+This section contains sanitized SQL examples demonstrating the warehouse and analytics logic used in the Procurement project.
 
 The examples are designed to demonstrate practical SQL engineering concepts without exposing proprietary organizational data.
 
