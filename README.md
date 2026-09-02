@@ -1,4 +1,4 @@
-# PSCMD — Data Engineering & Analytics Platform
+# Procurement — Data Engineering & Analytics Platform
 
 **End-to-End Procurement Data Engineering, Analytics & Reporting Project**
 
@@ -12,7 +12,7 @@
 
 ## 📌 Project Overview
 
-**PSCMD** is an end-to-end procurement data engineering and analytics platform designed to transform raw procurement data into structured, reliable, and business-ready datasets for reporting and decision-making.
+**Procurement** is an end-to-end procurement data engineering and analytics platform designed to transform raw procurement data into structured, reliable, and business-ready datasets for reporting and decision-making.
 
 The project demonstrates how modern data engineering practices can be used to build a complete data platform covering:
 
