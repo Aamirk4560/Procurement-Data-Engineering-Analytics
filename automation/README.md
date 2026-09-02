@@ -1,6 +1,6 @@
 # Automation & Email Alerts
 
-The PSCMD solution included automation around the data pipeline to reduce manual monitoring and communicate processing results.
+The Procurement solution included automation around the data pipeline to reduce manual monitoring and communicate processing results.
 
 ## Automation Flow
 
